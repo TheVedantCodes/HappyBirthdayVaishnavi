@@ -1,3 +1,4 @@
+```javascript
 /* =========================================================
    🌸 EDITABLE CONTENT — EDIT THIS SECTION
    ========================================================= */
@@ -125,24 +126,33 @@ if(CONFIG.backgroundImage){
 // =======================================================
 const music = $("bgMusic");
 let musicStarted = false;
+
 if(CONFIG.music.src){
   music.src = CONFIG.music.src;
+  music.loop = true;
   music.volume = Math.min(1, Math.max(0, CONFIG.music.volume));
   $("musicControl").classList.remove("hidden");
 }
 
 async function startMusic(){
   if(!CONFIG.music.src || musicStarted || !CONFIG.music.autoplayAfterFirstInteraction) return;
+
   try{
     await music.play();
     musicStarted = true;
     $("musicButton").textContent = "♫ Music On";
   }catch(e){
-    // Browser may still require an explicit music-button tap.
+    // Mobile browser blocked playback.
+    // Try again on the next interaction.
   }
 }
 
-document.addEventListener("pointerdown", startMusic, {once:true});
+// Start music from ANY interaction with the website.
+// It is NOT connected specifically to the password button.
+document.addEventListener("pointerdown", startMusic);
+document.addEventListener("touchstart", startMusic, {passive:true});
+document.addEventListener("keydown", startMusic);
+
 $("musicButton").onclick = async () => {
   if(!music.paused){
     music.pause();
@@ -420,6 +430,7 @@ function playCakeSound(){
     setTimeout(()=>ctx.close(),1200);
   }catch(e){}
 }
+
 function cutCake(){
   cut=true; start=null;
   cakeStage.classList.add("cutting");
@@ -443,6 +454,7 @@ function partyBurst(){
 }
 
 $("finishCake").onclick=()=>show("letterScreen");
+
 $("replay").onclick=()=>{
   qi=0;cut=false;photoIndex=0;
   cakeStage.classList.remove("cutting");
@@ -480,3 +492,4 @@ function confetti(){
     setTimeout(()=>p.remove(),3500);
   }
 }
+```
