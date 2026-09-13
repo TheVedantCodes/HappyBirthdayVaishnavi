@@ -1,4 +1,3 @@
-
 /* =========================================================
    🌸 EDITABLE CONTENT — EDIT THIS SECTION
    ========================================================= */
@@ -126,44 +125,34 @@ if(CONFIG.backgroundImage){
 // =======================================================
 const music = $("bgMusic");
 let musicStarted = false;
-
-if (CONFIG.music.src) {
+if(CONFIG.music.src){
   music.src = CONFIG.music.src;
-  music.loop = true;
   music.volume = Math.min(1, Math.max(0, CONFIG.music.volume));
   $("musicControl").classList.remove("hidden");
 }
 
-async function startMusic() {
-  if (!CONFIG.music.src || musicStarted) return;
-
-  try {
+async function startMusic(){
+  if(!CONFIG.music.src || musicStarted || !CONFIG.music.autoplayAfterFirstInteraction) return;
+  try{
     await music.play();
     musicStarted = true;
     $("musicButton").textContent = "♫ Music On";
-  } catch (error) {
-    // Browser blocked playback.
-    // The next user interaction will try again.
+  }catch(e){
+    // Browser may still require an explicit music-button tap.
   }
 }
 
-// Start music after the FIRST interaction anywhere on the page.
-document.addEventListener("pointerdown", startMusic);
-
-$("musicButton").onclick = async (event) => {
-  event.stopPropagation();
-
-  if (music.paused) {
-    try {
+document.addEventListener("pointerdown", startMusic, {once:true});
+$("musicButton").onclick = async () => {
+  if(!music.paused){
+    music.pause();
+    $("musicButton").textContent = "♫ Music Off";
+  }else{
+    try{
       await music.play();
       musicStarted = true;
       $("musicButton").textContent = "♫ Music On";
-    } catch (error) {
-      $("musicButton").textContent = "♫ Tap Again";
-    }
-  } else {
-    music.pause();
-    $("musicButton").textContent = "♫ Music Off";
+    }catch(e){}
   }
 };
 
@@ -431,7 +420,6 @@ function playCakeSound(){
     setTimeout(()=>ctx.close(),1200);
   }catch(e){}
 }
-
 function cutCake(){
   cut=true; start=null;
   cakeStage.classList.add("cutting");
@@ -455,7 +443,6 @@ function partyBurst(){
 }
 
 $("finishCake").onclick=()=>show("letterScreen");
-
 $("replay").onclick=()=>{
   qi=0;cut=false;photoIndex=0;
   cakeStage.classList.remove("cutting");
@@ -493,4 +480,3 @@ function confetti(){
     setTimeout(()=>p.remove(),3500);
   }
 }
-
