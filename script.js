@@ -40,7 +40,7 @@ const CONFIG = {
   // This website starts the music after the first tap/click.
   // =======================================================
   music: {
-    src: "Assets/Happy Birthday Soft Instrumental - Happy Birthday background Music.mp3",
+    src: "Assets/Converted Music.mp3",
     volume: 0.45,
     autoplayAfterFirstInteraction: true
   },
