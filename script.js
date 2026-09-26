@@ -90,7 +90,7 @@ This little website is just a small birthday surprise, because a normal birthday
 
 Keep smiling, keep being awesome, and have an amazing birthday!
 
-Yours Lovingly
+Yours Lovingly,
 ~ Vedant 🌷(8th B)`
 };
 /* =========================================================
