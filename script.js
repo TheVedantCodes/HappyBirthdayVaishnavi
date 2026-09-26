@@ -86,10 +86,11 @@ Happy Birthday! 🎂🌸✨
 
 I hope your day is filled with happiness, laughter, great memories and an unreasonable amount of cake.
 
-This little website is just a small birthday surprise, because a normal birthday message would have been too easy and you also deserve the best birthday surprise, because you hold a special role in my life, and I love that thing so much. 😊👏
+This little website is just a small birthday surprise, because a normal birthday message would have been too easy and you also deserve the best birthday surprise, because you hold a special role in my life, and I Love You for this. 😊👏
 
 Keep smiling, keep being awesome, and have an amazing birthday!
 
+Yours Lovingly
 ~ Vedant 🌷(8th B)`
 };
 /* =========================================================
